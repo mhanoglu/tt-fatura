@@ -8,7 +8,7 @@ Python-Scrapy kütüphanesi kullanılarak hazırlanmış. Bu nedenle ilk olarak 
 
 ## Kurulum
 
-Kullandığım işletim sistemi Ubuntu 18.04. Eğer farklı bir işletim sistem sistemi kullanıyorsanız resmi [Scrapy Installation Documentation]  sayfasından faydalanabilirsiniz. 
+Kullandığım işletim sistemi Ubuntu 18.04. Eğer farklı bir işletim sistem sistemi kullanıyorsanız resmi [Scrapy Installation Documentation] sayfasından faydalanabilirsiniz. 
 
 Kuruluma başlamadan önce bilgisayarınızda Python yüklü olduğuna emin olunuz.
 
@@ -71,7 +71,7 @@ Projeyi çalıştırabilmek için gerekli kurulumlar bu kadar.
 cd tt-fatura/scrapyProject/spiders
 ```
 
-3. Scripti çalıştırma için iki parametreye ihtiyacınız var. 
+3. Scripti çalıştırmak için iki parametreye ihtiyacınız var. 
 
    `phone` Telefon numaranızı başında 0 olmadan girmelisiniz.
 
@@ -83,7 +83,7 @@ cd tt-fatura/scrapyProject/spiders
 scrapy runspider turk-telekom.py -a phone=5554443322 -a code=123456
 ```
 
-4. Komutu çalıştırdıktan sonra ekranda aşağıdaki gibi bir tablo göreceksiniz.
+4. Komutu çalıştırdıktan sonra aşağıdaki gibi bir çıktı alacağız.
 
 ```
 Fatura Tutarı     Fatura Kesim Tarihi        Son Ödeme Tarihi                  Tarife            Ödeme Durumu
@@ -150,7 +150,7 @@ curl --location --request POST 'https://onlineislemler.turktelekom.com.tr/oim/ss
 ```
 
 
-2. Session bilgisini tutan mysessionid adlı cookie'nin oluşması için aşağıdaki isteği atıyoruz.
+2. Session bilgisini tutan `mysessionid` adlı cookie'nin oluşması için aşağıdaki isteği atıyoruz.
 
 ```
 curl --location --request POST 'https://onlineislemler.turktelekom.com.tr/mps/Portal?cmd=tekilOim' \
@@ -160,13 +160,13 @@ curl --location --request POST 'https://onlineislemler.turktelekom.com.tr/mps/Po
 --data-urlencode 'assetId=5383286789'
 ```
 
-   Burada loginde elde ettiğimiz `payload.tokenDetails.accessToken`  bilgisini cookie'ye ekliyoruz. Dönen yanıt bir sayfa olacaktır.
+   Burada `login`'de elde ettiğimiz `payload.tokenDetails.accessToken` bilgisini cookie'ye ekliyoruz. Dönen yanıt bir sayfa olacaktır.
 
    
 
 3. Bir önceki istekten dönen yanıt aslında otomatik olarak form isteği gönderen ara bir sayfa. Sayfadaki kodları incelersek;
 
-   Javascript koduna göre: Önceki adımda localstorage'e kaydetmiş olduğu `accessToken` ve `refreshToken`  bilgilerini input'lara setliyor.
+   Javascript koduna göre: Önceki adımda localstorage'e kaydetmiş olduğu `accessToken` ve `refreshToken`  bilgilerini okuyup input'lara setliyor.
 
 ```
 $(document).ready(function() {
@@ -212,7 +212,7 @@ curl --location --request POST 'https://onlineislemler.turktelekom.com.tr/mps/Po
 
 4. Ardından fatular sayfası için istek atıyoruz. Attığımız istek sonrasında elde ettiğimiz html dokümanı parse ederek fatura bilgilerimize erişiyoruz.
 
-   Her bir fatura bilgisi aşağıdaki gibi `table > tr` içindeki `td` elementlerinde tutulmaktadır. Parse işlemi sonrasın tüm bilgileri yalın bir halde alıyoruz.
+   Her bir fatura bilgisi aşağıdaki gibi `table > tr` içindeki `td` elementlerinde tutulmaktadır. Parse işlemi sonrasında tüm bilgileri yalın bir halde alıyoruz.
    
 
 ```
