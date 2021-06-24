@@ -210,7 +210,7 @@ curl --location --request POST 'https://onlineislemler.turktelekom.com.tr/mps/Po
 
 
 
-4. Ardından fatular sayfası için istek atıyoruz. Attığımız istek sonrasında elde ettiğimiz html dokümanı parse ederek fatura bilgilerimize erişiyoruz.
+4. Ardından faturalar sayfası için istek atıyoruz. Attığımız istek sonrasında elde ettiğimiz html dokümanı parse ederek fatura bilgilerimize erişiyoruz.
 
    Her bir fatura bilgisi aşağıdaki gibi `table > tr` içindeki `td` elementlerinde tutulmaktadır. Parse işlemi sonrasında tüm bilgileri yalın bir halde alıyoruz.
    
